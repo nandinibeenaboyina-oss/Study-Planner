@@ -4,8 +4,16 @@
 
 @layer base {
   body {
-    @apply antialiased font-sans;
+    @apply antialiased font-sans bg-[#090714] text-slate-100;
   }
+}
+
+/* Violet Glow Background Atmosphere */
+.violet-glow-bg {
+  background: radial-gradient(circle at 15% 15%, rgba(124, 58, 237, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 85% 65%, rgba(139, 92, 246, 0.12) 0%, transparent 45%),
+              radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+              #090714;
 }
 
 /* Custom scrollbars */
@@ -17,9 +25,9 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(139, 92, 246, 0.35);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.7);
+  background: rgba(168, 85, 247, 0.7);
 }

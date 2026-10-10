@@ -10,6 +10,15 @@ export interface UserProfile {
   dailyGoalHours: number;
 }
 
+export interface SyllabusTopic {
+  id: string;
+  title: string;
+  unit: string;
+  youtubeUrl: string;
+  notesUrl: string;
+  isCompleted: boolean;
+}
+
 export interface Subject {
   id: string;
   name: string;
@@ -21,6 +30,7 @@ export interface Subject {
   totalTopics: number;
   completedTopics: number;
   colorHex: string;
+  syllabusTopics: SyllabusTopic[];
 }
 
 export interface StudyTask {
@@ -97,5 +107,6 @@ export type ActiveTab =
   | 'quizzes'
   | 'placement'
   | 'ai-assistant'
+  | 'timer'
   | 'reports'
   | 'settings';

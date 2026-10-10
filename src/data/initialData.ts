@@ -8,7 +8,7 @@ export const initialProfile: UserProfile = {
   branch: 'B.Tech Computer Science & Engineering',
   targetCgpa: 9.2,
   currentCgpa: 8.75,
-  bio: 'Preparing for Campus Placements & GATE CSE. Passionate about Backend, Distributed Systems & DSA.',
+  bio: 'Preparing for Campus Placements & GATE CSE. Focused on Backend, Systems & Algorithms.',
   dailyGoalHours: 4.5
 };
 
@@ -21,9 +21,67 @@ export const initialSubjects: Subject[] = [
     description: 'Relational Model, SQL, Normalization (1NF-BCNF), ACID, Indexing & B+ Trees.',
     examDate: '2026-11-15',
     priority: 'High',
-    totalTopics: 12,
-    completedTopics: 9,
-    colorHex: '#2563eb'
+    totalTopics: 7,
+    completedTopics: 5,
+    colorHex: '#8b5cf6',
+    syllabusTopics: [
+      {
+        id: 'dbms-1',
+        title: 'DBMS Architecture & Data Independence',
+        unit: 'Unit 1: Foundations',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=dbms+architecture+3+tier+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=dbms+architecture+geeksforgeeks+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dbms-2',
+        title: 'ER Modeling & Relational Schema Mapping',
+        unit: 'Unit 1: Foundations',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=er+model+to+relational+mapping+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=er+diagram+to+relational+model+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dbms-3',
+        title: 'Advanced SQL Queries, Subqueries & Joins',
+        unit: 'Unit 2: Relational Query Languages',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=sql+joins+and+subqueries+tutorial',
+        notesUrl: 'https://www.google.com/search?q=sql+queries+cheatsheet+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'dbms-4',
+        title: 'Functional Dependencies & Normalization (1NF to BCNF)',
+        unit: 'Unit 3: Database Design Theory',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=normalization+dbms+1nf+2nf+3nf+bcnf+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=normalization+in+dbms+geeksforgeeks+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dbms-5',
+        title: 'Transaction Management & ACID Properties',
+        unit: 'Unit 4: Transaction & Concurrency',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=acid+properties+dbms+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=acid+properties+dbms+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dbms-6',
+        title: 'Concurrency Control (2PL, Strict 2PL & Deadlocks)',
+        unit: 'Unit 4: Transaction & Concurrency',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=two+phase+locking+2pl+dbms+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=two+phase+locking+protocol+geeksforgeeks',
+        isCompleted: false
+      },
+      {
+        id: 'dbms-7',
+        title: 'B-Tree & B+ Tree File Indexing',
+        unit: 'Unit 5: Storage & Indexing',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=b+plus+tree+insertion+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=b+plus+tree+indexing+notes+geeksforgeeks',
+        isCompleted: false
+      }
+    ]
   },
   {
     id: 'sub-2',
@@ -33,81 +91,299 @@ export const initialSubjects: Subject[] = [
     description: 'Process Scheduling, Synchronization & Semaphores, Deadlocks, Virtual Memory & Paging.',
     examDate: '2026-11-18',
     priority: 'High',
-    totalTopics: 10,
-    completedTopics: 7,
-    colorHex: '#3b82f6'
+    totalTopics: 6,
+    completedTopics: 4,
+    colorHex: '#7c3aed',
+    syllabusTopics: [
+      {
+        id: 'os-1',
+        title: 'Processes, Threads & System Calls',
+        unit: 'Unit 1: Overview & Process Management',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=process+vs+thread+operating+system+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=processes+and+threads+geeksforgeeks+notes',
+        isCompleted: true
+      },
+      {
+        id: 'os-2',
+        title: 'CPU Scheduling Algorithms (FCFS, SJF, Round Robin)',
+        unit: 'Unit 2: Scheduling',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=cpu+scheduling+algorithms+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=cpu+scheduling+algorithms+notes+pdf',
+        isCompleted: true
+      },
+      {
+        id: 'os-3',
+        title: 'Process Synchronization, Semaphores & Peterson Algorithm',
+        unit: 'Unit 3: Synchronization',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=process+synchronization+semaphores+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=process+synchronization+semaphores+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'os-4',
+        title: 'Deadlocks: 4 Coffman Conditions & Banker\'s Algorithm',
+        unit: 'Unit 4: Deadlocks',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=banker+algorithm+deadlock+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=bankers+algorithm+deadlock+notes',
+        isCompleted: true
+      },
+      {
+        id: 'os-5',
+        title: 'Virtual Memory, Paging, TLB & Page Replacement (FIFO, LRU)',
+        unit: 'Unit 5: Memory Management',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=paging+and+virtual+memory+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=virtual+memory+paging+geeksforgeeks+notes',
+        isCompleted: false
+      },
+      {
+        id: 'os-6',
+        title: 'Disk Scheduling Algorithms (SSTF, SCAN, C-SCAN)',
+        unit: 'Unit 6: Storage Systems',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=disk+scheduling+algorithms+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=disk+scheduling+algorithms+notes',
+        isCompleted: false
+      }
+    ]
   },
   {
     id: 'sub-3',
     name: 'Computer Networks',
     code: 'CS303',
     category: 'Core CSE',
-    description: 'OSI & TCP/IP Stack, Routing Protocols (OSPF, BGP), Flow Control, Subnetting, DNS & HTTP.',
+    description: 'OSI & TCP/IP Stack, Routing Protocols, Flow/Congestion Control, Subnetting.',
     examDate: '2026-11-22',
     priority: 'Medium',
-    totalTopics: 10,
-    completedTopics: 6,
-    colorHex: '#0284c7'
+    totalTopics: 6,
+    completedTopics: 3,
+    colorHex: '#6366f1',
+    syllabusTopics: [
+      {
+        id: 'cn-1',
+        title: 'OSI 7-Layer Model vs TCP/IP Protocol Suite',
+        unit: 'Unit 1: Fundamentals',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=osi+model+7+layers+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=osi+model+layers+geeksforgeeks+notes',
+        isCompleted: true
+      },
+      {
+        id: 'cn-2',
+        title: 'Data Link Layer: Framing, Error Detection (CRC) & Sliding Window',
+        unit: 'Unit 2: Data Link Layer',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=sliding+window+protocol+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=sliding+window+protocol+crc+notes',
+        isCompleted: true
+      },
+      {
+        id: 'cn-3',
+        title: 'IPv4 Subnetting, CIDR & Supernetting Numericals',
+        unit: 'Unit 3: Network Layer',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=ip+addressing+subnetting+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=subnetting+cidr+calculations+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'cn-4',
+        title: 'Routing Algorithms: Distance Vector vs Link State (Dijkstra)',
+        unit: 'Unit 3: Network Layer',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=dijkstra+algorithm+routing+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=distance+vector+link+state+routing+notes',
+        isCompleted: false
+      },
+      {
+        id: 'cn-5',
+        title: 'Transport Layer: TCP 3-Way Handshake, Flow & Congestion Control',
+        unit: 'Unit 4: Transport Layer',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=tcp+3+way+handshake+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=tcp+congestion+control+geeksforgeeks+notes',
+        isCompleted: false
+      },
+      {
+        id: 'cn-6',
+        title: 'Application Layer: DNS, HTTP/HTTPS, FTP, SMTP',
+        unit: 'Unit 5: Application Layer',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=dns+and+http+computer+networks+gate+smashers',
+        notesUrl: 'https://www.google.com/search?q=dns+http+protocol+notes+pdf',
+        isCompleted: false
+      }
+    ]
   },
   {
     id: 'sub-4',
     name: 'Data Structures & Algorithms',
     code: 'CS201',
     category: 'Programming',
-    description: 'Arrays, Linked Lists, Trees, Graphs, Dynamic Programming, Greedy, Time Complexities.',
+    description: 'Arrays, Linked Lists, Trees, Graphs, Dynamic Programming, Greedy, Time Complexity.',
     examDate: '2026-11-25',
     priority: 'High',
-    totalTopics: 16,
-    completedTopics: 13,
-    colorHex: '#10b981'
+    totalTopics: 7,
+    completedTopics: 5,
+    colorHex: '#10b981',
+    syllabusTopics: [
+      {
+        id: 'dsa-1',
+        title: 'Asymptotic Analysis & Master Theorem',
+        unit: 'Unit 1: Complexity Analysis',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=master+theorem+algorithm+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=asymptotic+analysis+master+theorem+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dsa-2',
+        title: 'Two Pointers & Sliding Window Patterns',
+        unit: 'Unit 2: Linear Data Structures',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=sliding+window+technique+striver',
+        notesUrl: 'https://www.google.com/search?q=sliding+window+two+pointer+patterns+leetcode+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dsa-3',
+        title: 'Binary Trees, BST & AVL Balanced Trees',
+        unit: 'Unit 3: Tree Data Structures',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=binary+search+tree+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=binary+tree+traversal+bst+notes+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'dsa-4',
+        title: 'Heap Data Structures & Priority Queues',
+        unit: 'Unit 3: Tree Data Structures',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=heap+sort+and+priority+queue+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=min+heap+max+heap+notes+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'dsa-5',
+        title: 'Graph Algorithms: BFS, DFS, Dijkstra, Kruskal & Prim',
+        unit: 'Unit 4: Graph Theory',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=dijkstra+algorithm+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=graph+algorithms+bfs+dfs+dijkstra+notes',
+        isCompleted: true
+      },
+      {
+        id: 'dsa-6',
+        title: 'Dynamic Programming: 0/1 Knapsack & LCS',
+        unit: 'Unit 5: Advanced Paradigms',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=0+1+knapsack+dynamic+programming+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=0+1+knapsack+problem+dp+notes+geeksforgeeks',
+        isCompleted: false
+      },
+      {
+        id: 'dsa-7',
+        title: 'Backtracking & Branch and Bound (N-Queens)',
+        unit: 'Unit 5: Advanced Paradigms',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=n+queens+problem+backtracking+abdul+bari',
+        notesUrl: 'https://www.google.com/search?q=n+queens+backtracking+notes+pdf',
+        isCompleted: false
+      }
+    ]
   },
   {
     id: 'sub-5',
-    name: 'Data Mining & Warehousing',
-    code: 'CS401',
-    category: 'Core CSE',
-    description: 'ETL Pipelines, Association Rules (Apriori), K-Means Clustering, Classification & Overfitting.',
-    examDate: '2026-11-28',
-    priority: 'Medium',
-    totalTopics: 8,
-    completedTopics: 5,
-    colorHex: '#8b5cf6'
-  },
-  {
-    id: 'sub-6',
     name: 'Machine Learning',
     code: 'CS402',
     category: 'Core CSE',
-    description: 'Supervised/Unsupervised Learning, Linear Regression, SVM, Decision Trees, Neural Networks.',
+    description: 'Supervised/Unsupervised Learning, Regression, SVM, Decision Trees, Neural Networks.',
     examDate: '2026-12-02',
     priority: 'Medium',
-    totalTopics: 10,
-    completedTopics: 6,
-    colorHex: '#6366f1'
+    totalTopics: 5,
+    completedTopics: 3,
+    colorHex: '#a855f7',
+    syllabusTopics: [
+      {
+        id: 'ml-1',
+        title: 'Linear & Logistic Regression, Gradient Descent',
+        unit: 'Unit 1: Supervised Regression',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=linear+regression+gradient+descent+statquest',
+        notesUrl: 'https://www.google.com/search?q=linear+regression+gradient+descent+notes',
+        isCompleted: true
+      },
+      {
+        id: 'ml-2',
+        title: 'Decision Trees, Random Forests & Ensemble Learning',
+        unit: 'Unit 2: Tree-Based Methods',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=decision+trees+random+forests+statquest',
+        notesUrl: 'https://www.google.com/search?q=decision+trees+entropy+information+gain+notes',
+        isCompleted: true
+      },
+      {
+        id: 'ml-3',
+        title: 'Support Vector Machines (SVM) & Kernel Trick',
+        unit: 'Unit 3: Classification Models',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=support+vector+machines+statquest',
+        notesUrl: 'https://www.google.com/search?q=svm+kernel+trick+notes+geeksforgeeks',
+        isCompleted: true
+      },
+      {
+        id: 'ml-4',
+        title: 'K-Means Clustering & Dimensionality Reduction (PCA)',
+        unit: 'Unit 4: Unsupervised Learning',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=pca+principal+component+analysis+statquest',
+        notesUrl: 'https://www.google.com/search?q=pca+dimensionality+reduction+notes',
+        isCompleted: false
+      },
+      {
+        id: 'ml-5',
+        title: 'Neural Networks: Forward Propagation, Backprop & Loss Functions',
+        unit: 'Unit 5: Deep Learning Foundations',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=neural+networks+3blue1brown',
+        notesUrl: 'https://www.google.com/search?q=neural+network+backpropagation+notes+pdf',
+        isCompleted: false
+      }
+    ]
   },
   {
-    id: 'sub-7',
+    id: 'sub-6',
     name: 'Quantitative Aptitude',
     code: 'APT101',
     category: 'Aptitude',
-    description: 'Percentages, Profit & Loss, Speed-Time-Distance, Permutations & Combinations, Probability.',
+    description: 'Percentages, Profit & Loss, Speed-Time-Distance, Permutations & Combinations.',
     examDate: '2026-11-10',
     priority: 'High',
-    totalTopics: 14,
-    completedTopics: 10,
-    colorHex: '#f59e0b'
-  },
-  {
-    id: 'sub-8',
-    name: 'Logical Reasoning',
-    code: 'LR101',
-    category: 'Reasoning',
-    description: 'Number Series, Syllogisms, Blood Relations, Coding-Decoding, Seating Arrangements.',
-    examDate: '2026-11-12',
-    priority: 'Medium',
-    totalTopics: 12,
-    completedTopics: 8,
-    colorHex: '#d97706'
+    totalTopics: 5,
+    completedTopics: 4,
+    colorHex: '#f59e0b',
+    syllabusTopics: [
+      {
+        id: 'apt-1',
+        title: 'Percentages, Profit & Loss, Discount Formulas',
+        unit: 'Arithmetic Aptitude',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=percentage+tricks+for+placements+career+ride',
+        notesUrl: 'https://www.google.com/search?q=percentage+profit+and+loss+shortcuts+notes',
+        isCompleted: true
+      },
+      {
+        id: 'apt-2',
+        title: 'Time & Work, Pipes & Cisterns',
+        unit: 'Arithmetic Aptitude',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=time+and+work+shortcuts+placement+season',
+        notesUrl: 'https://www.google.com/search?q=time+and+work+formulas+shortcuts+notes',
+        isCompleted: true
+      },
+      {
+        id: 'apt-3',
+        title: 'Speed, Time, Distance & Trains Problems',
+        unit: 'Arithmetic Aptitude',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=speed+time+distance+trains+aptitude+tricks',
+        notesUrl: 'https://www.google.com/search?q=speed+time+distance+trains+formulas+notes',
+        isCompleted: true
+      },
+      {
+        id: 'apt-4',
+        title: 'Permutations & Combinations, Probability',
+        unit: 'Higher Math Aptitude',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=permutations+and+combinations+placement+aptitude',
+        notesUrl: 'https://www.google.com/search?q=permutation+combination+probability+formulas+notes',
+        isCompleted: true
+      },
+      {
+        id: 'apt-5',
+        title: 'Data Interpretation: Bar Charts, Pie Charts, Tables',
+        unit: 'DI Aptitude',
+        youtubeUrl: 'https://www.youtube.com/results?search_query=data+interpretation+pie+chart+bar+graph+tricks',
+        notesUrl: 'https://www.google.com/search?q=data+interpretation+shortcuts+notes',
+        isCompleted: false
+      }
+    ]
   }
 ];
 

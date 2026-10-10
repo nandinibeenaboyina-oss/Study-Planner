@@ -10,6 +10,7 @@ import { PlacementPrep } from './components/PlacementPrep';
 import { AiAssistant } from './components/AiAssistant';
 import { ProgressReports } from './components/ProgressReports';
 import { Settings } from './components/Settings';
+import { StudyTimer } from './components/StudyTimer';
 
 import { 
   UserProfile, 
@@ -34,72 +35,62 @@ import {
 } from './data/initialData';
 
 export const App: React.FC = () => {
-  // Theme state
-  const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem('theme') === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
-  });
+  // Theme state default dark with black & violet
+  const [darkMode, setDarkMode] = useState<boolean>(true);
 
-  // Sync theme with document class
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
   // Persistent States from LocalStorage
   const [profile, setProfile] = useState<UserProfile>(() => {
-    const saved = localStorage.getItem('user_profile');
+    const saved = localStorage.getItem('user_profile_v2');
     return saved ? JSON.parse(saved) : initialProfile;
   });
 
   const [subjects, setSubjects] = useState<Subject[]>(() => {
-    const saved = localStorage.getItem('study_subjects');
+    const saved = localStorage.getItem('study_subjects_v2');
     return saved ? JSON.parse(saved) : initialSubjects;
   });
 
   const [tasks, setTasks] = useState<StudyTask[]>(() => {
-    const saved = localStorage.getItem('study_tasks');
+    const saved = localStorage.getItem('study_tasks_v2');
     return saved ? JSON.parse(saved) : initialTasks;
   });
 
   const [notes, setNotes] = useState<StudyNote[]>(() => {
-    const saved = localStorage.getItem('study_notes');
+    const saved = localStorage.getItem('study_notes_v2');
     return saved ? JSON.parse(saved) : initialNotes;
   });
 
   const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() => {
-    const saved = localStorage.getItem('quiz_questions');
+    const saved = localStorage.getItem('quiz_questions_v2');
     return saved ? JSON.parse(saved) : initialQuizQuestions;
   });
 
   const [quizAttempts, setQuizAttempts] = useState<QuizAttempt[]>(() => {
-    const saved = localStorage.getItem('quiz_attempts');
+    const saved = localStorage.getItem('quiz_attempts_v2');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [placementResources, setPlacementResources] = useState<PlacementResource[]>(() => {
-    const saved = localStorage.getItem('placement_resources');
+    const saved = localStorage.getItem('placement_resources_v2');
     return saved ? JSON.parse(saved) : initialPlacementResources;
   });
 
   const [studyLogs, setStudyLogs] = useState<StudyLog[]>(() => {
-    const saved = localStorage.getItem('study_logs');
+    const saved = localStorage.getItem('study_logs_v2');
     return saved ? JSON.parse(saved) : initialStudyLogs;
   });
 
   // Save to LocalStorage on changes
-  useEffect(() => { localStorage.setItem('user_profile', JSON.stringify(profile)); }, [profile]);
-  useEffect(() => { localStorage.setItem('study_subjects', JSON.stringify(subjects)); }, [subjects]);
-  useEffect(() => { localStorage.setItem('study_tasks', JSON.stringify(tasks)); }, [tasks]);
-  useEffect(() => { localStorage.setItem('study_notes', JSON.stringify(notes)); }, [notes]);
-  useEffect(() => { localStorage.setItem('quiz_attempts', JSON.stringify(quizAttempts)); }, [quizAttempts]);
-  useEffect(() => { localStorage.setItem('placement_resources', JSON.stringify(placementResources)); }, [placementResources]);
-  useEffect(() => { localStorage.setItem('study_logs', JSON.stringify(studyLogs)); }, [studyLogs]);
+  useEffect(() => { localStorage.setItem('user_profile_v2', JSON.stringify(profile)); }, [profile]);
+  useEffect(() => { localStorage.setItem('study_subjects_v2', JSON.stringify(subjects)); }, [subjects]);
+  useEffect(() => { localStorage.setItem('study_tasks_v2', JSON.stringify(tasks)); }, [tasks]);
+  useEffect(() => { localStorage.setItem('study_notes_v2', JSON.stringify(notes)); }, [notes]);
+  useEffect(() => { localStorage.setItem('quiz_attempts_v2', JSON.stringify(quizAttempts)); }, [quizAttempts]);
+  useEffect(() => { localStorage.setItem('placement_resources_v2', JSON.stringify(placementResources)); }, [placementResources]);
+  useEffect(() => { localStorage.setItem('study_logs_v2', JSON.stringify(studyLogs)); }, [studyLogs]);
 
   // Navigation states
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -138,7 +129,6 @@ export const App: React.FC = () => {
       if (t.id === id) {
         const nextStatus = t.status === 'Pending' ? 'In Progress' : t.status === 'In Progress' ? 'Completed' : 'Pending';
         if (nextStatus === 'Completed') {
-          // Log study minutes
           handleLogStudyTime(t.date, t.durationMinutes, t.subjectName);
         }
         return { ...t, status: nextStatus };
@@ -195,7 +185,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen violet-glow-bg bg-[#090714] text-slate-100 flex flex-col font-sans transition-colors duration-200">
       {/* Top Navbar */}
       <Navbar
         profile={profile}
@@ -234,6 +224,13 @@ export const App: React.FC = () => {
               onAddSubject={handleAddSubject}
               onEditSubject={handleEditSubject}
               onDeleteSubject={handleDeleteSubject}
+            />
+          )}
+
+          {activeTab === 'timer' && (
+            <StudyTimer
+              subjects={subjects}
+              onLogStudyTime={handleLogStudyTime}
             />
           )}
 
