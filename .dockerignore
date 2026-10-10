@@ -1,0 +1,11 @@
+node_modules
+.gradle
+gradle
+app
+build
+.build-outputs
+.git
+.env
+.env.example
+*.keystore*
+*.webp
