@@ -5,7 +5,6 @@ import {
   CalendarDays, 
   FileText, 
   CheckSquare, 
-  Briefcase, 
   Sparkles, 
   BarChart3, 
   Settings as SettingsIcon,
@@ -36,7 +35,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
     { id: 'planner' as ActiveTab, label: 'Study Planner', icon: CalendarDays },
     { id: 'notes' as ActiveTab, label: 'Study Notes', icon: FileText },
     { id: 'quizzes' as ActiveTab, label: 'Quizzes & MCQs', icon: CheckSquare },
-    { id: 'placement' as ActiveTab, label: 'Placement Prep', icon: Briefcase },
     { id: 'ai-assistant' as ActiveTab, label: 'AI Study Coach', icon: Sparkles, badge: 'AI' },
     { id: 'reports' as ActiveTab, label: 'Progress Reports', icon: BarChart3 },
     { id: 'settings' as ActiveTab, label: 'Student Settings', icon: SettingsIcon }

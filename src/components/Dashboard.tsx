@@ -163,12 +163,12 @@ export const Dashboard: React.FC<DashboardProps> = ({
         </button>
 
         <button
-          onClick={() => setActiveTab('placement')}
+          onClick={() => setActiveTab('ai-assistant')}
           className="p-4 rounded-2xl bg-[#120d24] border border-[#2a1f4a] text-left hover:border-violet-500 transition-all group shadow-sm"
         >
           <Sparkles className="w-6 h-6 text-emerald-400 mb-2 group-hover:scale-110 transition-transform" />
-          <h4 className="font-bold text-sm text-white">Placement Prep</h4>
-          <p className="text-xs text-slate-400 mt-0.5">Interview & Coding Qs</p>
+          <h4 className="font-bold text-sm text-white">AI Study Coach</h4>
+          <p className="text-xs text-slate-400 mt-0.5">Instant Concept Doubts & Solutions</p>
         </button>
       </div>
 

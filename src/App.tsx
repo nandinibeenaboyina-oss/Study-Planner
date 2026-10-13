@@ -6,7 +6,6 @@ import { Subjects } from './components/Subjects';
 import { StudyPlanner } from './components/StudyPlanner';
 import { StudyNotes } from './components/StudyNotes';
 import { Quizzes } from './components/Quizzes';
-import { PlacementPrep } from './components/PlacementPrep';
 import { AiAssistant } from './components/AiAssistant';
 import { ProgressReports } from './components/ProgressReports';
 import { Settings } from './components/Settings';
@@ -19,7 +18,6 @@ import {
   StudyNote, 
   QuizQuestion, 
   QuizAttempt, 
-  PlacementResource, 
   StudyLog, 
   ActiveTab 
 } from './types';
@@ -30,7 +28,6 @@ import {
   initialTasks, 
   initialNotes, 
   initialQuizQuestions, 
-  initialPlacementResources, 
   initialStudyLogs 
 } from './data/initialData';
 
@@ -44,53 +41,50 @@ export const App: React.FC = () => {
 
   // Persistent States from LocalStorage
   const [profile, setProfile] = useState<UserProfile>(() => {
-    const saved = localStorage.getItem('user_profile_v2');
+    const saved = localStorage.getItem('user_profile_v3');
     return saved ? JSON.parse(saved) : initialProfile;
   });
 
   const [subjects, setSubjects] = useState<Subject[]>(() => {
-    const saved = localStorage.getItem('study_subjects_v2');
+    const saved = localStorage.getItem('study_subjects_v3');
     return saved ? JSON.parse(saved) : initialSubjects;
   });
 
   const [tasks, setTasks] = useState<StudyTask[]>(() => {
-    const saved = localStorage.getItem('study_tasks_v2');
+    const saved = localStorage.getItem('study_tasks_v3');
     return saved ? JSON.parse(saved) : initialTasks;
   });
 
   const [notes, setNotes] = useState<StudyNote[]>(() => {
-    const saved = localStorage.getItem('study_notes_v2');
+    const saved = localStorage.getItem('study_notes_v3');
     return saved ? JSON.parse(saved) : initialNotes;
   });
 
-  const [quizQuestions, setQuizQuestions] = useState<QuizQuestion[]>(() => {
-    const saved = localStorage.getItem('quiz_questions_v2');
+  const [quizQuestions] = useState<QuizQuestion[]>(() => {
+    const saved = localStorage.getItem('quiz_questions_v3');
     return saved ? JSON.parse(saved) : initialQuizQuestions;
   });
 
   const [quizAttempts, setQuizAttempts] = useState<QuizAttempt[]>(() => {
-    const saved = localStorage.getItem('quiz_attempts_v2');
+    const saved = localStorage.getItem('quiz_attempts_v3');
     return saved ? JSON.parse(saved) : [];
   });
 
-  const [placementResources, setPlacementResources] = useState<PlacementResource[]>(() => {
-    const saved = localStorage.getItem('placement_resources_v2');
-    return saved ? JSON.parse(saved) : initialPlacementResources;
-  });
-
   const [studyLogs, setStudyLogs] = useState<StudyLog[]>(() => {
-    const saved = localStorage.getItem('study_logs_v2');
+    const saved = localStorage.getItem('study_logs_v3');
     return saved ? JSON.parse(saved) : initialStudyLogs;
   });
 
+  // Prompt/topic to pre-fill in AI Assistant
+  const [aiInitialQuery, setAiInitialQuery] = useState<string>('');
+
   // Save to LocalStorage on changes
-  useEffect(() => { localStorage.setItem('user_profile_v2', JSON.stringify(profile)); }, [profile]);
-  useEffect(() => { localStorage.setItem('study_subjects_v2', JSON.stringify(subjects)); }, [subjects]);
-  useEffect(() => { localStorage.setItem('study_tasks_v2', JSON.stringify(tasks)); }, [tasks]);
-  useEffect(() => { localStorage.setItem('study_notes_v2', JSON.stringify(notes)); }, [notes]);
-  useEffect(() => { localStorage.setItem('quiz_attempts_v2', JSON.stringify(quizAttempts)); }, [quizAttempts]);
-  useEffect(() => { localStorage.setItem('placement_resources_v2', JSON.stringify(placementResources)); }, [placementResources]);
-  useEffect(() => { localStorage.setItem('study_logs_v2', JSON.stringify(studyLogs)); }, [studyLogs]);
+  useEffect(() => { localStorage.setItem('user_profile_v3', JSON.stringify(profile)); }, [profile]);
+  useEffect(() => { localStorage.setItem('study_subjects_v3', JSON.stringify(subjects)); }, [subjects]);
+  useEffect(() => { localStorage.setItem('study_tasks_v3', JSON.stringify(tasks)); }, [tasks]);
+  useEffect(() => { localStorage.setItem('study_notes_v3', JSON.stringify(notes)); }, [notes]);
+  useEffect(() => { localStorage.setItem('quiz_attempts_v3', JSON.stringify(quizAttempts)); }, [quizAttempts]);
+  useEffect(() => { localStorage.setItem('study_logs_v3', JSON.stringify(studyLogs)); }, [studyLogs]);
 
   // Navigation states
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -161,15 +155,16 @@ export const App: React.FC = () => {
     setQuizAttempts(prev => [newAttempt, ...prev]);
   };
 
-  // Placement Bookmark Action
-  const handleTogglePlacementBookmark = (id: string) => {
-    setPlacementResources(prev => prev.map(r => r.id === id ? { ...r, isBookmarked: !r.isBookmarked } : r));
-  };
-
   // Study Log Action
   const handleLogStudyTime = (date: string, minutes: number, subjectName: string) => {
     const newLog: StudyLog = { date, minutesStudied: minutes, subjectName };
     setStudyLogs(prev => [newLog, ...prev]);
+  };
+
+  // Navigation with prefilled AI prompt
+  const handleAskAiAboutTopic = (topicTitle: string, subjectName: string) => {
+    setAiInitialQuery(`Explain "${topicTitle}" in ${subjectName} with key concepts, exam numerical/diagram points, and concise summary.`);
+    setActiveTab('ai-assistant');
   };
 
   // Reset to Initial Samples
@@ -178,7 +173,6 @@ export const App: React.FC = () => {
     setSubjects(initialSubjects);
     setTasks(initialTasks);
     setNotes(initialNotes);
-    setPlacementResources(initialPlacementResources);
     setStudyLogs(initialStudyLogs);
     setQuizAttempts([]);
     localStorage.clear();
@@ -224,6 +218,7 @@ export const App: React.FC = () => {
               onAddSubject={handleAddSubject}
               onEditSubject={handleEditSubject}
               onDeleteSubject={handleDeleteSubject}
+              onAskAi={handleAskAiAboutTopic}
             />
           )}
 
@@ -263,15 +258,12 @@ export const App: React.FC = () => {
             />
           )}
 
-          {activeTab === 'placement' && (
-            <PlacementPrep
-              resources={placementResources}
-              onToggleBookmark={handleTogglePlacementBookmark}
-            />
-          )}
-
           {activeTab === 'ai-assistant' && (
-            <AiAssistant subjects={subjects} />
+            <AiAssistant 
+              subjects={subjects} 
+              initialQuery={aiInitialQuery}
+              onClearInitialQuery={() => setAiInitialQuery('')}
+            />
           )}
 
           {activeTab === 'reports' && (

@@ -13,10 +13,16 @@ export interface UserProfile {
 export interface SyllabusTopic {
   id: string;
   title: string;
-  unit: string;
   youtubeUrl: string;
   notesUrl: string;
   isCompleted: boolean;
+}
+
+export interface SyllabusUnit {
+  id: string;
+  unitNumber: string; // e.g. "Unit 1"
+  unitTitle: string;  // e.g. "Foundations & Relational Architecture"
+  topics: SyllabusTopic[];
 }
 
 export interface Subject {
@@ -30,7 +36,7 @@ export interface Subject {
   totalTopics: number;
   completedTopics: number;
   colorHex: string;
-  syllabusTopics: SyllabusTopic[];
+  units: SyllabusUnit[];
 }
 
 export interface StudyTask {
@@ -74,18 +80,6 @@ export interface QuizAttempt {
   completedAt: string;
 }
 
-export interface PlacementResource {
-  id: string;
-  category: 'Technical' | 'HR Interview' | 'Programming Practice' | 'Company Guide';
-  title: string;
-  topic: string;
-  difficulty: 'Easy' | 'Medium' | 'Hard';
-  question: string;
-  answer: string;
-  codeSnippet?: string;
-  isBookmarked: boolean;
-}
-
 export interface StudyLog {
   date: string;
   minutesStudied: number;
@@ -96,17 +90,17 @@ export interface ChatMessage {
   id: string;
   isUser: boolean;
   text: string;
+  subjectTag?: string;
   timestamp: string;
 }
 
 export type ActiveTab = 
   | 'dashboard'
   | 'subjects'
+  | 'ai-assistant'
+  | 'timer'
   | 'planner'
   | 'notes'
   | 'quizzes'
-  | 'placement'
-  | 'ai-assistant'
-  | 'timer'
   | 'reports'
   | 'settings';
