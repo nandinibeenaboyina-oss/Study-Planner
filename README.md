@@ -4,22 +4,30 @@ A full-featured study planning, exam preparation, syllabus tracking, and AI tuto
 
 ---
 
-## 🚀 Live App & Deployment on Render
+## 🚀 Live App & Deployment
 
-Your app can be deployed on Render as a **Web Service**:
-- **Environment / Runtime:** Node
+### Deploying on Vercel (Recommended - 100% Free & Instant)
+Vercel has generous free tier limits and deploys in less than 60 seconds with zero configuration:
+1. Push your repository to **GitHub** (or ensure latest commits are pushed).
+2. Go to **[vercel.com](https://vercel.com)** and sign in with your **GitHub** account.
+3. Click **"Add New..."** ➔ **"Project"**.
+4. Find and select your **`student-study-planner`** repository and click **"Import"**.
+5. Vercel automatically detects **Vite**:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `dist`
+6. *(Optional)* Under **Environment Variables**, add `VITE_GEMINI_API_KEY` if you want to use a custom Gemini API key.
+7. Click **"Deploy"**!
+8. Within 30 seconds, Vercel gives you your permanent live URL (e.g. `https://your-project.vercel.app`) with automatic HTTPS and global CDN.
+
+---
+
+### Deploying on Render (Web Service)
+If using Render:
 - **Build Command:** `npm install && npm run build`
 - **Start Command:** `node server.js`
-- **Health Check Path:** `/health`
-- **Environment Variables:**
-  - `NODE_ENV=production`
-  - `PORT=10000`
-  - `VITE_GEMINI_API_KEY` (Optional for live Gemini AI API)
+- **Port:** `10000` (or leave default `$PORT`)
 
-### To Deploy / Update on Render:
-1. Push your updated code to your **GitHub** repository.
-2. In Render, select your web service and click **Manual Deploy > Deploy latest commit** (or Render auto-deploys if automatic deployments are enabled).
-3. If using Docker, Render will detect the included `Dockerfile` and run the multi-stage build automatically.
 
 ---
 
